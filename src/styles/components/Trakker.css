@@ -1,0 +1,9 @@
+.tracker{
+}
+.makeStyles-content-6 {
+    padding: 0 !important;
+}
+.trakker__name{
+    display: flex !important;
+    justify-content: space-between;
+}
