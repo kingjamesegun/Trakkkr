@@ -1,0 +1,67 @@
+.dashboard {
+  margin-top: 2%;
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    margin-top: 8%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    margin-top: 5%;
+  }
+}
+
+.dashboard .dashboard__overview {
+  -webkit-box-shadow: 0 2px 2px 1px #343A40;
+          box-shadow: 0 2px 2px 1px #343A40;
+  padding: 5% 3%;
+  border-radius: 5px;
+}
+
+.dashboard .dashboard__overview h1 {
+  margin-bottom: 2%;
+  font-family: 'Lato';
+}
+
+.dashboard .dashboard__subdivision {
+  margin-top: 5%;
+}
+
+@media (max-width: 480px) {
+  .dashboard .dashboard__subdivision {
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard .dashboard__subdivision {
+    margin-top: 10%;
+  }
+}
+
+.dashboard .dashboard__subdivision .dashboardCard {
+  padding: 30px 15px;
+  -webkit-box-shadow: 0 2px 2px 1px #2ECC71;
+          box-shadow: 0 2px 2px 1px #2ECC71;
+  border-radius: 5px;
+}
+
+.dashboard .dashboard__subdivision .dashboardCard h2 {
+  font-size: 1.2rem;
+  font-family: 'Lato';
+  margin-bottom: 10px;
+}
+
+.dashboard .dashboard__subdivision .dashboardCard p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 2px;
+}
+/*# sourceMappingURL=Dashboard.css.map */

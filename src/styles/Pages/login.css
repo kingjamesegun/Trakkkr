@@ -1,9 +1,164 @@
-form{
-    display: flex;
-    flex-direction: column;
-    max-width: 30%;
-    margin: 10% auto;
+.login h1 {
+  padding: 2% 0 0 10%;
 }
-.makeStyles-margin-8 {
-    margin: 8px 0 !important;
+
+.login p {
+  padding: 0 0 0 10%;
+  width: 60%;
 }
+
+@media (max-width: 768px) {
+  .login p {
+    padding: 0 10%;
+    width: 100%;
+  }
+}
+
+.login .signup__fieldSuccess {
+  color: #3db43d;
+  font-size: 11px;
+  min-height: 18px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 480px) {
+  .login .signup__fieldSuccess {
+    margin: 0% 0 0 10%;
+  }
+}
+
+.login form {
+  padding: 10% 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5% 0 0 15%;
+}
+
+.login form h2 {
+  color: #3F3D56;
+}
+
+@media (max-width: 480px) {
+  .login form h2 {
+    font-size: 1.2rem;
+    margin: 0% 0 0 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .login form {
+    margin: 5% 0 0 0% !important;
+    padding: 5% 0 0 0% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .login form {
+    margin: 5% 0 0 10%;
+    padding: 5% 0 0 10%;
+  }
+}
+
+.login form .signup__fieldContainer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login form .signup__fieldContainer .signup__email, .login form .signup__fieldContainer .signup__password {
+  margin-bottom: 3%;
+  color: #3F3D56;
+}
+
+@media (max-width: 480px) {
+  .login form .signup__fieldContainer .signup__email, .login form .signup__fieldContainer .signup__password {
+    margin: 2% 0 0 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login form .signup__fieldContainer .signup__email, .login form .signup__fieldContainer .signup__password {
+    margin-bottom: 2%;
+  }
+}
+
+.login form .signup__fieldContainer .signup__email .MuiFormLabel-root, .login form .signup__fieldContainer .signup__password .MuiFormLabel-root {
+  color: #3F3D56;
+}
+
+.login form .signup__fieldContainer .signup__fieldError {
+  color: #ce4848;
+  font-size: 11px;
+  min-height: 18px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 480px) {
+  .login form .signup__fieldContainer .signup__fieldError {
+    margin: 0% 0 0 10%;
+  }
+}
+
+.login form .signup__btn {
+  background-color: #F50057;
+  margin-top: 5%;
+  color: #fff;
+  -webkit-transition: 0.2 ease-in-out;
+  transition: 0.2 ease-in-out;
+}
+
+.login form .signup__btn:hover {
+  background-color: #3F3D56;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .login form .signup__btn {
+    margin: 5% 0 0 10%;
+    -webkit-transition: 0.01 ease-in-out;
+    transition: 0.01 ease-in-out;
+  }
+  .login form .signup__btn:hover {
+    background-color: #3F3D56;
+    color: #fff;
+  }
+}
+
+.login .signup__side {
+  padding: 1% 0 0 10%;
+}
+
+@media (max-width: 480px) {
+  .login .signup__side {
+    padding: 20% 0 0 10%;
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .login .signup__side {
+    padding: 23% 0 0 10%;
+  }
+}
+
+.login .signup__side .signup__img {
+  width: 90%;
+}
+/*# sourceMappingURL=login.css.map */

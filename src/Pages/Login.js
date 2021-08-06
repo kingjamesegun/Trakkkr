@@ -1,100 +1,133 @@
-import { Button, TextField } from '@material-ui/core';
-import React from 'react'
-import Header from '../components/Header';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import React, { useState} from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Message from '../assets/LOGIN.svg'
+import { useFormik } from 'formik';
+import '../styles/Pages/login.css';
+import * as yup from 'yup';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import PropTypes from 'prop-types'
 
-import clsx from 'clsx';
+// const PASSWORD_REGEX = /^(?=.\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
-// css
-import "../styles/Pages/login.css"
+const validationSchema = yup.object({
+  username: yup.string().required("Username is reqired."),
+  password: yup.string().required('No password provided.').min(8, 'Password is too short - should be 8 chars minimum.'),
+ 
+})
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    }
-  }));
-  
 
-function Login() {
-    
-  const classes = useStyles();
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
-  
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+function Login({setToken}) {
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values)=>{
+    alert(JSON.stringify(values));
+    const {...data} = values;
+    alert(JSON.stringify(data))
+
+    const response = await axios.post("https://trakkkr.herokuapp.com/user/login/", values)
+      .catch(err=>{
+        if(err && err.response)
+          console.log("Error: ", err.response.data);
+          setError(err.response.data);
+        
+      })
+      if(response){ 
+        sessionStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
+        Cookies.set("user", response.data.token);
+
+        alert(JSON.stringify(response));
+        // setSuccess(response.data.status_message);
+
+      }
   }
-
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validateOnBlur: true,
+    onSubmit,
+    validationSchema: validationSchema
+  })
+  // console.log("Errors: ", formik.errors);
+    
     return (
-        <div className="login">
-            <Header
-                title="Login"
-            />
-            <form>
-                <TextField
-                    id="outlined-basic" 
-                    label="Outlined"
-                    variant="outlined"
-                    className="form__textfield"
-                />
+      <div className="login">
+            <h1>Welcome Back !</h1>
+      
+        <div className="row container">
+            <div className="col-lg-5 col-md-5 col-xs-12"> 
+            <div className="signup__fieldSuccess">
+            </div>
+              <form  noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
+                  { error && !success ? <div className="signup__fieldError">You have not signed up.</div> : ""}
                 
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                        >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    labelWidth={70}
-                />
-                </FormControl>
+                <h2>Sign In</h2>
+                <div className="signup__fieldContainer">
+                  <TextField 
+                    name="username"
+                    value={formik.values.username}
+                    onChange={formik.handleChange}
+                    id="standard-basic" 
+                    label="Username" 
+                    className="signup__email"
+                    onBlur ={formik.handleBlur}
+                  />
+                  <span className="signup__fieldError">
+                    {formik.touched.username && formik.errors.username ? formik.errors.username: ""}
+                  </span>
+                </div>
+
+                <div className="signup__fieldContainer">
+                  <TextField
+                    name="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    id="standard-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    onBlur ={formik.handleBlur}
+                    className="signup__password"
+                  />
+                  <span className="signup__fieldError">
+                    {formik.touched.password && formik.errors.password ? formik.errors.password: ""}
+                  </span>
+                </div>
                 <Button 
-                    variant="contained"
-                >Login</Button>
-            </form>
+                  type="submit" 
+                  className="signup__btn"
+                  >
+                    Sign Up
+                  </Button>
+              </form>
+            </div>
+            <div className="col-lg-7 col-md-7 col-xs-12">
+              <div className="signup__side">
+                <img
+                  src={Message}
+                  className="signup__img"
+                  alt="message"
+                />
+              </div>
+            </div>
 
         </div>
+
+      </div>
+            
     )
 }
 
-export default Login
+export default Login;
+
+Login.propTypes= {
+  setToken: PropTypes.func.isRequired
+}
+

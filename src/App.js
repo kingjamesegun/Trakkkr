@@ -1,131 +1,80 @@
-import './styles/App.css';
-import logo from './logo.svg';
+import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 // PAGES
 import Home from './Pages/Home';
-import Tracker from './Pages/Trakker';
-
-// components
-import Nav from './components/Menu';
-
-
-
-
-
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import VpnKey from '@material-ui/icons/VpnKey';
-import Person from '@material-ui/icons/Person';
+import Product from './Pages/Product';
+import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
+import SignUp from './Pages/SignUp';
+import Enquiry from './Pages/Enquiry';
+import Loader from './components/Loader'
 
-const drawerWidth = 240;
+import Nav from './components/Nav'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
 
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
+
+// function getToken() {
+//   const tokenString = sessionStorage.getItem('token');
+//   const userToken = JSON.parse(tokenString);
+//   return userToken?.token
+// }
 
 
 function App() {
-  const classes = useStyles();
+  // const token = getToken();
+
+  // if(!token){
+  //   return <Login setToken={setToken}/>
+  // }
   return (
     <div className="app">
     <Router>
-      {/* <Nav/>
+      <Nav/>
       <Switch>
         <Route path="/" exact>
           <Home/>
         </Route>
       </Switch>
       <Switch>
-        <Route path="/tracker" exact>
-          <Tracker/>
+        <Route path="/product" exact>
+          <Product/>
         </Route>
-      </Switch> */}
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          {['Home', 'Trakker', 'Notification'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <VpnKey/> : <Person />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Login', 'Sign Up', 'Profile'].map((text, index) => (
-            <ListItem button key={text}>
-              <Person>{index % 2 === 0 ? <VpnKey /> : <Person />}</Person>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
+      </Switch>
       <Switch>
-          <Route path="/" exact>
-            <Home/>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route path="/trakker">
-            <Tracker/>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route path="/login">
-            <Login/>
-          </Route>
-        </Switch>
-      </main>
-    </div>
-      
+        <Route path="/dashboard" exact>
+          <Dashboard/>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/signin" exact>
+          <Login/>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/signup" exact>
+          <SignUp/>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/enquiry" exact>
+          <Enquiry/>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/loader" exact>
+          <Loader/>
+        </Route>
+      </Switch>
+   
+   
     </Router>
 
     </div>

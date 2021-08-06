@@ -1,0 +1,22 @@
+svg{
+    margin-right: 2px;
+    color: #fff;
+    padding: 1px !important
+}
+.app{
+    font-size: 14px;
+}
+   
+.app{
+    $breakpoint-tablet: 768px;
+    $breakpoint-mobile: 480px;
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 10px
+    }
+    @media (max-width: $breakpoint-tablet){
+        font-size: 15px
+
+    }
+
+
+}
