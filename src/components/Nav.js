@@ -1,9 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AccountTreeSharpIcon from '@material-ui/icons/AccountTreeSharp';
-import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import AlarmAddRoundedIcon from '@material-ui/icons/AlarmAddRounded'
 import NavLogo from '../assets/logo.png';
 
 function NavMenu() {
@@ -11,8 +7,8 @@ function NavMenu() {
     <div>
 
       <nav 
-        className="navbar navbar-expand-sm navbar-dark " 
-        style={{backgroundColor: "#3F3D56"}}
+        className="navbar navbar-expand-sm navbar-dark" 
+        style={{backgroundColor: "#3F3D56", position: "fixed", width : "100%", zIndex : "32"}}
       >
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">
@@ -25,14 +21,18 @@ function NavMenu() {
     <div className="collapse navbar-collapse" id="navbarsExample03">
       <ul className="navbar-nav mr-auto mb-2 mb-sm-0">
         <li className="nav-item active">
-          <Link className="nav-link" aria-current="page" to="/dashboard">
-            <DashboardIcon/>Dashboard
+          <Link className="nav-link" aria-current="page" to="/">
+            Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/product">
-            <AccountTreeSharpIcon/>
-            Product
+        <li className="nav-item active">
+          <Link className="nav-link" aria-current="page" to="/about">
+            About
+          </Link>
+        </li>
+        <li className="nav-item active sand">
+          <Link className="nav-link" aria-current="page" to="/team">
+            Team
           </Link>
         </li>
 
@@ -40,9 +40,8 @@ function NavMenu() {
       
       <ul className="navbar-nav  mb-sm-0 inline">
         <li className="nav-item active">
-          <Link className="nav-link" aria-current="page" to="/login">
-            <PersonRoundedIcon/>
-            kingjamesegun
+          <Link className=" login-btn" aria-current="page" to="/login">
+            Login
           </Link>
         </li>
 

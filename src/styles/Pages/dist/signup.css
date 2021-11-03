@@ -1,18 +1,13 @@
 .register {
   padding: 5%;
 }
-
 .register .register__box {
   padding: 20px 20px;
-  -webkit-box-shadow: 1px 1px 2px gray;
-          box-shadow: 1px 1px 2px gray;
+  box-shadow: 1px 1px 2px gray;
 }
-
 .register .register__box .signup_tag h2 {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
-
 .register .register__box .w-full {
   padding-right: 30px;
 }
-/*# sourceMappingURL=signup.css.map */

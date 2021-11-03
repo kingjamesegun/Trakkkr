@@ -1,146 +1,15 @@
-.signup{
-    h1{
-        padding: 2% 0 0 10%;
-    }
-    p{
-        padding: 0 0 0 10%;
-        width: 60%;
-        $breakpoint-mobile: 768px;
-        @media(max-width: $breakpoint-mobile){
-            padding: 0 10%;
-            width: 100%;
-        }
-    }
-    .signup__fieldSuccess{
-        color: rgb(61, 180, 61);
-        font-size: 11px;
-        font-weight: bold;
-        min-height: 18px;
-        margin-bottom: 2px;
-        $breakpoint-tablet: 768px;
-        $breakpoint-mobile: 480px;
-        @media (max-width: $breakpoint-mobile) {
-            margin: 5% 0 0 10%;
-        }
-    }
-    .signup__fieldError{
-        color: rgb(206, 72, 72);
-        font-size: 11px;
-        min-height: 18px;
-        font-weight: bold;
-        margin-bottom: 2px;
-        $breakpoint-tablet: 768px;
-        $breakpoint-mobile: 480px;
-        @media (max-width: $breakpoint-mobile) {
-            margin: 5% 0 0 10%;
-        }
-    }
-    form{
-        h2{
-            color: #3F3D56;
-            $breakpoint-tablet: 768px;
-            $breakpoint-mobile: 480px;
-            @media (max-width: $breakpoint-mobile) {
-                font-size: 1.2rem;
-                margin: 0% 0 0 10%
-            }
-            @media (max-width: $breakpoint-tablet) {
-                font-size: 1.5rem;
-                margin-bottom: 0;
+.register{
+    padding: 5%;
+    .register__box{
+        padding: 20px 20px;
+        box-shadow: 1px 1px 2px gray;
+        .signup_tag{
+            h2{
+                font-family: 'Roboto'
             }
         }
-        padding: 5% 10% ;
-        display: flex;
-        flex-direction: column;
-        margin: 5% 0 0 15%;
-        $breakpoint-tablet: 768px;
-        $breakpoint-mobile: 480px;
-        @media (max-width: $breakpoint-mobile) {
-            margin: 5% 0 0 0% !important;
-            padding: 5% 0 0 0% !important;
-        }
-        @media (max-width: $breakpoint-tablet) {
-            margin: 5% 0 0 10%;
-            padding: 5% 0 0 10% ;
-        }
-        .signup__fieldContainer{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            .signup__email, .signup__password{
-                margin-bottom: 3%;
-                color: #3F3D56;
-                $breakpoint-tablet: 768px;
-                $breakpoint-mobile: 480px;
-                @media (max-width: $breakpoint-mobile) {
-                    margin: 2% 0 0 10%;
-                }
-                @media (max-width: $breakpoint-tablet) {
-                    margin-bottom: 2%;
-                }
-                .MuiFormLabel-root{
-                    color: #3F3D56
-                }
-    
-            }
-
-        }
-        .signup__btn{
-            background-color: #F50057;
-            margin-top: 5%;
-            color: #fff;
-            transition: 0.2 ease-in-out;
-            &:hover{
-                background-color: #3F3D56;
-                color: #fff;
-            }
-            &:disabled{
-                filter: contrast(0.7)
-            }
-            $breakpoint-tablet: 768px;
-            $breakpoint-mobile: 480px;
-            @media (max-width: $breakpoint-mobile) {
-                margin: 5% 0 0 10%;
-                transition: 0.01 ease-in-out;
-                &:hover{
-                    background-color: #3F3D56;
-                    color: #fff;
-                }
-            }
-        }
-        .signup__signin{
-            margin-top: 5%;
-            $breakpoint-tablet: 768px;
-            $breakpoint-mobile: 480px;
-            @media (max-width: $breakpoint-mobile) {
-                margin: 5% 0 0 10%;
-            }
-            @media(max-width: $breakpoint-tablet){
-                font-size: 12px;
-                margin-top: 4%;
-            }
-            span{
-                a{ 
-                    color: #F50057;
-                    float: right;
-                    font-weight: bold;
-                }
-            }
-        }
-    }
-    .signup__side{
-        padding: 10% 0 0 5%;
-        $breakpoint-tablet: 768px;
-        $breakpoint-mobile: 480px;
-        @media (max-width: $breakpoint-mobile) {
-            padding: 20% 0 0 10%;
-            display: none;
-        }
-        @media (max-width: $breakpoint-tablet) {
-            padding: 23% 0 0 10%;
-        }
-        .signup__img{
-            width: 100%;
+        .w-full{
+            padding-right: 30px;
         }
     }
 }

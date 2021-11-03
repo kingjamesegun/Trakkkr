@@ -7,12 +7,12 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 // PAGES
 import Home from './Pages/Home';
-import Product from './Pages/Product';
-import Dashboard from './Pages/Dashboard';
+// import Product from './Pages/Product';
+// import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
-import Enquiry from './Pages/Enquiry';
-import Loader from './components/Loader'
+// import Enquiry from './Pages/Enquiry';
+// import Loader from './components/Loader'
 
 import Nav from './components/Nav'
 
@@ -35,7 +35,7 @@ function App() {
   //   return <Login setToken={setToken}/>
   // }
   return (
-    <div className="app">
+    <div className="">
     <Router>
       <Nav/>
       <Switch>
@@ -43,24 +43,25 @@ function App() {
           <Home/>
         </Route>
       </Switch>
+      
       <Switch>
-        <Route path="/product" exact>
+        <Route path="/register" exact>
+          <SignUp/>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/login" exact>
+          <Login/>
+        </Route>
+      </Switch>
+      {/* <Switch> */}
+        {/* <Route path="/product" exact>
           <Product/>
         </Route>
       </Switch>
       <Switch>
         <Route path="/dashboard" exact>
           <Dashboard/>
-        </Route>
-      </Switch>
-      <Switch>
-        <Route path="/signin" exact>
-          <Login/>
-        </Route>
-      </Switch>
-      <Switch>
-        <Route path="/signup" exact>
-          <SignUp/>
         </Route>
       </Switch>
       <Switch>
@@ -72,7 +73,7 @@ function App() {
         <Route path="/loader" exact>
           <Loader/>
         </Route>
-      </Switch>
+      </Switch> */}
    
    
     </Router>
