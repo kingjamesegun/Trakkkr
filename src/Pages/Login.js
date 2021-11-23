@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Pages/login.css';
+import IlluSvg from '../assets/illsvg.svg'
 
 
 class Signup extends React.Component {
@@ -13,7 +14,7 @@ class Signup extends React.Component {
     submitted: false
   }
 
-
+ 
   render() { 
     const onChangeHandler = (e) =>{
       console.log(e.target.value)
@@ -36,6 +37,10 @@ class Signup extends React.Component {
               </h2>
               <p>the most and common thing used to be very efficiient and go to work out to be tracked.  </p>
             </div>
+            <div className="login__ill">
+              <img src={IlluSvg} alt=""/>
+            </div>
+
           </div>
           <div className="col-lg-7 col-md-7 col-xs-12">
             <div className="w-full ">
@@ -90,7 +95,7 @@ class Signup extends React.Component {
                   </a>
                 </div>
               </form>
-              <p className="text-center text-gray-500 text-xs">
+              <p className="text-center text-gray-500 text-xs mt-5">
                 &copy;2020 Acme Corp. All rights reserved.
               </p>
             </div>

@@ -1,30 +1,29 @@
 .login{
-    padding: 15% 5% 5% 5%;
-    @media(max-width: 425px ){
-        padding: 15px 5px;
-    }
+    padding: 10% 5% 5% 5%;
     .login__box{
         padding: 20px 20px;
-        box-shadow:  15px 15px 41px #cacaca,
-                    -15px -15px 41px #f6f6f6;
+        box-shadow: 1px 1px 2px gray;
         @media(max-width: 425px ){
             box-shadow: none;
+            padding-top: 20%;
         }
         .login_tag{
             h2{
                 font-family: 'Roboto'
             }
         }
+        .login__ill{
+            width: 60%;
+            margin: 10% auto;
+            @media(max-width: 1024px){
+                width: 80%;
+                margin: 15% auto;
+            }
+        }
         .w-full{
             padding-right: 30px;
-            @media(max-width: 425px ){
-                padding-right: 0;
-            }
-            form{
-                @media(max-width: 425px){
-                    margin-top: 20px;
-                }
-                @media(max-width: 375px){
+            @media(max-width: 425px){
+                form{
                     padding: 0;
                     box-shadow: none;
                 }

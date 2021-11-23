@@ -1,21 +1,13 @@
 .productCard {
   background-color: #fff;
 }
-
 .productCard .product__Card {
   padding: 15px;
 }
-
 .productCard .product__Card .productCard__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 .productCard .product__Card p {
   margin: 0;
-}
-/*# sourceMappingURL=ProductCard.css.map */
+}/*# sourceMappingURL=ProductCard.css.map */

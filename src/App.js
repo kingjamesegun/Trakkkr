@@ -7,7 +7,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 // PAGES
 import Home from './Pages/Home';
-// import Product from './Pages/Product';
+import Product from './Pages/Product';
 // import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
@@ -37,23 +37,24 @@ function App() {
   return (
     <div className="">
     <Router>
-      <Nav/>
       <Switch>
-        <Route path="/" exact>
-          <Home/>
-        </Route>
-      </Switch>
-      
-      <Switch>
-        <Route path="/register" exact>
-          <SignUp/>
-        </Route>
-      </Switch>
-      <Switch>
-        <Route path="/login" exact>
-          <Login/>
-        </Route>
-      </Switch>
+          <Route path="/register" exact>
+            <SignUp/>
+          </Route>
+          <Route path="/login" exact>
+            <Login/>
+          </Route>
+        <>
+        <Nav/>
+          <Route path="/" exact>
+            <Home/>
+          </Route>
+          <Route path="/product">
+            <Product/>
+          </Route>
+          
+        </>
+        </Switch>
       {/* <Switch> */}
         {/* <Route path="/product" exact>
           <Product/>

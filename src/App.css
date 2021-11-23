@@ -13,10 +13,8 @@ svg {
     font-size: 10px;
   }
 }
-
 @media (max-width: 768px) {
   .app {
     font-size: 15px;
   }
-}
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */

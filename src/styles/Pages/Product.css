@@ -1,36 +1,26 @@
 .product {
   margin-top: 2%;
 }
-
 .product .product__main {
   background-color: #EEEEEE;
   padding: 8% 2%;
   border-radius: 8px;
 }
-
 .product .product__main .product__resolve {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-bottom: 5%;
 }
-
 @media (max-width: 480px) {
   .product .product__main .product__resolve .button__btn {
     font-size: 10px;
   }
 }
-
 @media (max-width: 768px) {
   .product .product__main .product__resolve .button__btn {
     font-size: 12px;
   }
 }
-
 .product .product__main .product__resolve .product__item {
   font-weight: bold;
-}
-/*# sourceMappingURL=Product.css.map */
+}/*# sourceMappingURL=Product.css.map */
