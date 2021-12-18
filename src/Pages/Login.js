@@ -1,32 +1,55 @@
 import React from 'react';
 import '../styles/Pages/login.css';
 import IlluSvg from '../assets/illsvg.svg'
+import axios from 'axios';
+import { Redirect } from 'react-router'
 
 
 class Signup extends React.Component {
   state= {
-    user : {
-      email: "",
-      phone_number: "",
       password: "",
-      username: ''
-    },
-    submitted: false
+      username: '',
+      redirect: false,
+      success: false
   }
 
  
   render() { 
-    const onChangeHandler = (e) =>{
+    const onChangeHandler = (field, e) =>{
       console.log(e.target.value)
+      this.setState({
+        ...this.state,
+        [field] : e.target.value
+      })
     }
 
-    const onSubmitHandle = (e) =>{
-      
+    const onSubmitHandle = async (e) =>{
       e.preventDefault();
+      console.log("submitted");
+      const data = {
+        username: this.state.username,
+        password: this.state.password
+      }
+      console.log(data)
+
+      const res = await axios.post("https://trakkkr.herokuapp.com/user/login/", data)
+      .catch((err)=>{
+        console.log(err);
+      })
+
+      if(res){
+        this.setState({redirect: true, success: true});
+        const {token} = res.data;
+        localStorage.setItem('token', token);
+        localStorage.getItem('token');
+      }
     }
 
-    const { user, submitted } = this.state;
-     
+    const {redirect} = this.state;
+
+    if(redirect){
+      return <Redirect to="/product"/>
+    }
     return <div className="login"> 
         <div className="login__box">
         <div className="row" style={{margin : 0}}>
@@ -45,49 +68,35 @@ class Signup extends React.Component {
           <div className="col-lg-7 col-md-7 col-xs-12">
             <div className="w-full ">
               <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit = {onSubmitHandle}>
-                <div className="mb-4">
-                  <input 
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                    id="email" 
-                    type="text" 
-                    placeholder="Email"
-                    onChange= {onChangeHandler}
-                  />
-                </div>
-                  <p className="text-red-500 text-xs italic">
-                    {submitted && !user.email &&
-                    <p className="text-red-500 text-xs italic">Please choose a password.</p>
-                  }
-                  </p>
+                {this.state.success ?
+              <div className='font-sans italic text-xs text-green-500 pb-2'>You're successfully logged in</div>
+              : <div></div>
+              }
                 <div className="mb-4">
                   <input 
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                     id="username" 
                     type="text" 
                     placeholder="Username"
-                    onChange= {onChangeHandler}
-                  />
-                </div>
-                <div className="mb-4">
-                  <input 
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                    id="phone_number" 
-                    type="text" 
-                    placeholder="Phone Number"
-                    onChange= {onChangeHandler}
+                    name="username"
+                    value={this.state.username}
+                    onChange= {(e) => onChangeHandler("username", e)}
                   />
                 </div>
                 <div className="mb-6">
+                  {console.log(this.state)}
                   <input 
                     className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
                     id="password" 
                     type="password" 
                     placeholder="******************"
-                    onChange= {onChangeHandler}
+                    value={this.state.password}
+                    name="password"
+                    onChange= {(e) => onChangeHandler("password", e)}
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Sign In
                   </button>
                   <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/password">
