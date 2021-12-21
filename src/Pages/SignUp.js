@@ -3,6 +3,7 @@ import '../styles/Pages/signup.css';
 import { connect } from 'react-redux';
 import {register} from '../redux/action/userAction';
 import Axios from "axios";
+import { Redirect } from 'react-router'
 
 class Signup extends React.Component {
   state= {
@@ -10,7 +11,9 @@ class Signup extends React.Component {
       phone_number: "",
       password: "",
       username: '',
-      success: ""
+      success: "",
+      redirect: false,
+      failure: false
   }
   componentDidMount(){
     // call the action when the page loads
@@ -43,15 +46,21 @@ class Signup extends React.Component {
       console.log("submitted");
       const res = await Axios.post("https://trakkkr.herokuapp.com/user/register/", data)
       .catch((err)=>{
-        if(err) console.log(err)
+        this.setState({failure: true});
       })
 
       if(res){
-        console.log("Successful", res.data.status_message);
-        this.setState({success: res.data.status_message});
+        this.setState({success: res.data.status_message, redirect: true});
       }
 
     }
+
+    const {redirect} = this.state;
+
+    if(redirect){
+      return <Redirect to="/"/>
+    }
+    
     return <div className="register"> 
         <div className="register__box">
         <div className="row" style={{margin : 0}}>
@@ -67,6 +76,7 @@ class Signup extends React.Component {
             <div className="w-full ">
               <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit = {onSubmitHandle}>
               <div className='font-sans italic text-xs text-green-500 pb-2'>{this.state.success}</div>
+              {this.state.failure?<div className='font-sans italic text-xs text-red-500 pb-2'>Operation Failed. Pls try again</div>: <div></div>}
                 <div className="mb-4">
                   <input 
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
@@ -111,7 +121,7 @@ class Signup extends React.Component {
                     id="password" 
                     type="password" 
                     name='password'
-                    placeholder="******************"
+                    placeholder="Must be 8 more than 8 char"
                     value= {this.state.password}
                     onChange= {(e) => onChangeHandler('password', e)}
                   />

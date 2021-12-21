@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Index() {
 
   return (
-    <div className="container py-6">
+    <div className="container py-3">
       <div className="flex justify-between items-center container">
         <div className="text-3xl text-bold text-sans ">
             Trakker
