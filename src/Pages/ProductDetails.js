@@ -7,7 +7,6 @@ import React, { useEffect } from 'react';
 function ProductDetails(props) {
     // const id = props.match.params.productId;
     useEffect(() => {
-        console.log(props.match)
         // axios.get(`https://trakkkr.herokuapp.com/${id}`)
     }, [])
     return (
