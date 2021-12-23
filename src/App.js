@@ -21,11 +21,11 @@ function App() {
     <div className="">
     <Router>
       <Switch>
-          <Route path="/register" exact>
-            <SignUp/>
-          </Route>
           <Route path="/" exact>
             <Login/>
+          </Route>
+          <Route path="/register" exact>
+            <SignUp/>
           </Route>
         <div>
         <Nav/>
