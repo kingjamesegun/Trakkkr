@@ -3,7 +3,8 @@ import '../styles/Pages/signup.css';
 import { connect } from 'react-redux';
 import {register} from '../redux/action/userAction';
 import Axios from "axios";
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import {Link} from 'react-router-dom';
 
 class Signup extends React.Component {
   state= {
@@ -131,16 +132,17 @@ class Signup extends React.Component {
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
                     type="submit"
                   >
-                    Sign In
+                    Sign Up
                   </button>
                   <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/password">
                     Forgot Password?
                   </a>
                 </div>
-              </form>
-              <p className="text-center text-gray-500 text-xs">
-                &copy;2020 Acme Corp. All rights reserved.
+              <p className="text-center text-gray-500 text-xs mt-5">
+                Already have an account?  
+                <Link to='/'> Sign In</Link>
               </p>
+              </form>
             </div>
           </div>
         </div> 

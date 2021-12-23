@@ -1,25 +1,32 @@
 .register {
-  padding: 10% 5% 5% 5%;
+  padding: 5% 5% 0% 5%;
 }
+
 .register .register__box {
   padding: 20px 20px;
-  box-shadow: 1px 1px 2px gray;
 }
+
 @media (max-width: 425px) {
   .register .register__box {
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     padding-top: 20%;
   }
 }
+
 .register .register__box .signup_tag h2 {
   font-family: "Roboto";
 }
+
 .register .register__box .w-full {
   padding-right: 30px;
 }
+
 @media (max-width: 425px) {
   .register .register__box .w-full form {
     padding: 0;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-}/*# sourceMappingURL=signup.css.map */
+}
+/*# sourceMappingURL=signup.css.map */

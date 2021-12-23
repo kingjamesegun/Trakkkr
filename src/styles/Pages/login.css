@@ -1,35 +1,44 @@
 .login {
-  padding: 10% 5% 5% 5%;
+  padding: 5% 5% 0% 5%;
 }
+
 .login .login__box {
   padding: 20px 20px;
-  box-shadow: 1px 1px 2px gray;
 }
+
 @media (max-width: 425px) {
   .login .login__box {
+    -webkit-box-shadow: none;
     box-shadow: none;
     padding-top: 20%;
   }
 }
+
 .login .login__box .login_tag h2 {
   font-family: "Roboto";
 }
+
 .login .login__box .login__ill {
   width: 60%;
   margin: 10% auto;
 }
+
 @media (max-width: 1024px) {
   .login .login__box .login__ill {
     width: 80%;
     margin: 15% auto;
   }
 }
+
 .login .login__box .w-full {
   padding-right: 30px;
 }
+
 @media (max-width: 425px) {
   .login .login__box .w-full form {
     padding: 0;
+    -webkit-box-shadow: none;
     box-shadow: none;
   }
-}/*# sourceMappingURL=login.css.map */
+}
+/*# sourceMappingURL=login.css.map */

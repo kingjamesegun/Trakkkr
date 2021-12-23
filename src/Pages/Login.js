@@ -2,7 +2,8 @@ import React from 'react';
 import '../styles/Pages/login.css';
 import IlluSvg from '../assets/illsvg.svg'
 import axios from 'axios';
-import { Redirect } from 'react-router'
+import { Redirect} from 'react-router';
+import {Link} from 'react-router-dom';
 
 
 class Signup extends React.Component {
@@ -41,7 +42,6 @@ class Signup extends React.Component {
         this.setState({redirect: true, success: true});
         const {token} = res.data;
         localStorage.setItem('token', token);
-        localStorage.getItem('token');
       }
     }
 
@@ -103,9 +103,13 @@ class Signup extends React.Component {
                     Forgot Password?
                   </a>
                 </div>
+              <p className="text-center text-gray-500 text-xs mt-5">
+                Not yet registered? 
+                <Link to='/register'> Sign Up</Link>
+              </p>
               </form>
               <p className="text-center text-gray-500 text-xs mt-5">
-                &copy;2020 Acme Corp. All rights reserved.
+                &copy;2020 Acme Corp. All rights reserved. 
               </p>
             </div>
           </div>

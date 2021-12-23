@@ -11,6 +11,8 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 
 import Nav from './components/Nav'
+import Track from './Pages/Track';
+import ProductDetails from './Pages/ProductDetails';
 
 
 
@@ -29,6 +31,12 @@ function App() {
         <Nav/>
           <Route path="/product">
             <Product/>
+          </Route>
+          <Route path="/track-form">
+            <Track/>
+          </Route>
+          <Route path="/products/:productId">
+            <ProductDetails/>
           </Route>
           
         </div>
