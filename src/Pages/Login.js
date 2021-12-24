@@ -17,7 +17,6 @@ class Signup extends React.Component {
  
   render() { 
     const onChangeHandler = (field, e) =>{
-      console.log(e.target.value)
       this.setState({
         ...this.state,
         [field] : e.target.value
@@ -31,11 +30,9 @@ class Signup extends React.Component {
         username: this.state.username,
         password: this.state.password
       }
-      console.log(data)
 
       const res = await axios.post("https://trakkkr.herokuapp.com/user/login/", data)
       .catch((err)=>{
-        console.log(err);
       })
 
       if(res){
@@ -84,7 +81,6 @@ class Signup extends React.Component {
                   />
                 </div>
                 <div className="mb-6">
-                  {console.log(this.state)}
                   <input 
                     className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
                     id="password" 
