@@ -35,7 +35,7 @@ function App() {
           <Route path="/track-form">
             <Track/>
           </Route>
-          <Route path="/products/:productId">
+          <Route path="/products/:id">
             <ProductDetails/>
           </Route>
           

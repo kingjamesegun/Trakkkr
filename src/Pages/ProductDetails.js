@@ -1,17 +1,36 @@
-import React, { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-// import axios  from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios  from 'axios';
 
-// let { id } = useParams();
 
 function ProductDetails(props) {
-    // const id = props.match.params.productId;
+    let {id} = useParams();
+
     useEffect(() => {
-        // axios.get(`https://trakkkr.herokuapp.com/${id}`)
-    }, [])
+        async function fetchedproduct() {
+            const res = await axios.get(`https://trakkkr.herokuapp.com/${id}`, {
+                headers: {
+                    Authorization : `Token ${localStorage.getItem('token')}`
+                }
+            })
+            setProduct(res.data);
+        }
+
+        fetchedproduct();
+
+    }, [id])
+
+    const [product, setProduct] = useState("");
+
     return (
-        <div>
-            Detail Page
+        <div className='container '>
+            <div className='grid grid-cols-3 gap-4'>
+                <div className='col-span-1 border rounded-4xl'>
+                    <div className=" rounded-lg" style={{backgroundImage: `url("${product.item_image_url}")`, height: "400px", width: "100%"}}></div>
+                    {console.log(product)}
+                </div>
+                <div className='col-span-2'>knkdf</div>
+            </div>
         </div>
     )
 }
