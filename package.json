@@ -19,6 +19,7 @@
     "react-bootstrap": "^1.6.1",
     "react-chart-histogram": "^0.2.4",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
     "react-redux": "^7.2.5",
     "react-responsive-carousel": "^3.2.22",
     "react-router": "^5.2.0",
