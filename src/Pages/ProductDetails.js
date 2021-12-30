@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Redirect } from "react-router";
 import Modal from "react-modal";
@@ -19,6 +19,7 @@ const customStyles = {
 
 function ProductDetails(props) {
   let { id } = useParams();
+  let history = useHistory();
 
   useEffect(() => {
     async function fetchedproduct() {
@@ -37,7 +38,6 @@ function ProductDetails(props) {
   const [redirect, setredirect] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [price, setPrice] = useState(0);
-
   const onDeleteButton = async () => {
     const res = await axios
       .delete(`https://trakkkr.herokuapp.com/${product.id}`, {
@@ -71,13 +71,11 @@ function ProductDetails(props) {
     });
 
     if(res){
-      setredirect(true);
-      console.log(res);
+      setModalIsOpen(false);
     }
   }
   const onPriceChangeHandler = (e) =>{
-    console.log(e)
-    // setPrice(e.target.value);
+    setPrice(e.target.value);
   }
 
   const openEditModal = () => {
@@ -91,9 +89,13 @@ function ProductDetails(props) {
     // subtitle.style.color = "#f00";
   };
 
+  
+
+
   if (redirect) {
     return <Redirect to="/product" />;
   }
+  
 
   return (
     <div className="container ">
@@ -139,33 +141,41 @@ function ProductDetails(props) {
             >
               Edit
             </button>
-            <Modal
-              isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
-              onRequestClose={closeEditModal}
-              style={customStyles}
-              contentLabel="Example Modal"
+            <button
+              className="captializze font-semibold mr-3 font-sans text-base bg-blue-500 text-white py-2 px-5 border rounded-md"
+              onClick={()=> {
+                history.goBack(); 
+              }}
             >
-              <h2 className="text-sans text-black text-2xl">Edit</h2>
-              <form onSubmit={onEditSubmit}>
-                <div className="mb-4">
-                  <input 
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" 
-                    id="price" 
-                    type="number" 
-                    placeholder="price"
-                    name="price"
-                    value={price}
-                    onChange= {onPriceChangeHandler}
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </Modal>
+              Back
+              </button>
+              <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeEditModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+                <h2 className="text-sans text-black text-2xl">Edit</h2>
+                <form onSubmit={onEditSubmit}>
+                  <div className="mb-4">
+                    <input 
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" 
+                      id="price" 
+                      type="number" 
+                      placeholder="price"
+                      name="price"
+                      value={price}
+                      onChange= {onPriceChangeHandler}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </Modal>
           </div>
         </div>
       </div>
