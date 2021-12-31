@@ -12,6 +12,7 @@ import SignUp from './Pages/SignUp';
 
 import Nav from './components/Nav'
 import ProductDetails from './Pages/ProductDetails';
+import Faq from './Pages/Faq';
 
 
 
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/products/:id">
             <ProductDetails/>
+          </Route>
+          <Route path= "/faq">
+            <Faq/>
           </Route>
           
         </div>

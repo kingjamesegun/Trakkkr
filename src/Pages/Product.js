@@ -107,7 +107,7 @@ function Product() {
         >
           <h2 className="text-sans text-black text-2xl">Edit</h2>
           <form
-            className="bg-white border rounded w-80 px-8 pt-6 pb-8 mb-5"
+            className="bg-white  w-80 px-8 pt-6 pb-8 mb-5"
             onSubmit={onSubmitHandler}
           >
             <div className="mb-4">
@@ -134,7 +134,7 @@ function Product() {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Edit
