@@ -72,6 +72,7 @@ function ProductDetails(props) {
 
     if(res){
       setModalIsOpen(false);
+      setredirect(true);
     }
   }
   const onPriceChangeHandler = (e) =>{
