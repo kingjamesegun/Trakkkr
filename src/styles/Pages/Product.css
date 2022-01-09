@@ -2,22 +2,7 @@
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-.header {
-  background-image: url("../../assets/background.png");
-  height: 50vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .products {
-  height: 300px;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.products2 {
-  background-image: url("../../assets/products2.png");
   height: 300px;
   width: 100%;
   background-size: cover;
