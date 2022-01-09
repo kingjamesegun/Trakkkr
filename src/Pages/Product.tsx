@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent, FormEvent} from "react";
 import "../styles/Pages/Product.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -18,22 +18,30 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function Product() {
+interface ProductData{
+  title: string,
+  id: number | string,
+  item_image_url: string,
+  item_title: string
+
+}
+const Product=() =>{
   useEffect(() => {
     async function fetchdata() {
-      const response = await axios.get("https://trakkkr.herokuapp.com/", {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      });
-      setProduct(response.data);
+    
+    const response = await axios.get("https://trakkkr.herokuapp.com/", {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+    });
+    setProducts(response.data);
     }
 
     fetchdata();
   }, []);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState<ProductData[]>([]);
   function openModal() {
     setIsOpen(true);
   }
@@ -43,20 +51,39 @@ function Product() {
     // subtitle.style.color = "#f00";
   }
 
-  function closeModal() {
+  const closeModal=async()=> {
+    
+    const data = {
+      url,
+      requested_price: price,
+    };
+
+    const response = await axios
+      .post("https://trakkkr.herokuapp.com/", data, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (response) {
+      setIsOpen(false);
+    }
     setIsOpen(false);
   }
   // Track
   const [url, setUrl] = useState("");
   const [price, setPrice] = useState(0);
 
-  const onUrlChangeHandler = (e) => {
+  const onUrlChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
   };
-  const onPriceChangeHandler = (e) => {
-    setPrice(e.target.value);
+  const onPriceChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrice(Number(e.target.value));
   };
-  const onSubmitHandler = async (e) => {
+
+  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = {
       url,
@@ -105,7 +132,7 @@ function Product() {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h2 className="text-sans text-black text-2xl">Edit</h2>
+          <h2 className="text-sans text-black text-2xl">Track</h2>
           <form
             className="bg-white  w-80 px-8 pt-6 pb-8 mb-5"
             onSubmit={onSubmitHandler}
@@ -137,7 +164,7 @@ function Product() {
                 className="bg-blue-500 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Edit
+                Track
               </button>
             </div>
           </form>
@@ -149,13 +176,14 @@ function Product() {
         </div>
       </div>
       <div className="container mb-5">
-        {product ? (
+        {products ? (
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
-            {product.map((prod) => (
+          {console.log(products)}
+            {products.map((prod) => (
               <Link
                 to={`/products/${prod.id}`}
                 className="text-black non-style"
-                key={prod.id}
+                  key={prod.id}
               >
                 <div
                   className="flex flex-col p-2 relative products  rounded-xl shadow-lg "

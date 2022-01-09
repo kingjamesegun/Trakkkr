@@ -18,7 +18,6 @@ import Faq from './Pages/Faq';
 
 function App() {
   return (
-    <div className="">
     <Router>
       <Switch>
           <Route path="/" exact>
@@ -27,7 +26,7 @@ function App() {
           <Route path="/register" exact>
             <SignUp/>
           </Route>
-        <div>
+        <>
         <Nav/>
           <Route path="/product">
             <Product/>
@@ -39,13 +38,11 @@ function App() {
             <Faq/>
           </Route>
           
-        </div>
+        </>
         </Switch>
    
    
     </Router>
-
-    </div>
   );
 }
 

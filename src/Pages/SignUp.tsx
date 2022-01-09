@@ -1,68 +1,66 @@
-import React from 'react';
+import React, {useState, FormEvent, ChangeEvent} from 'react';
 import '../styles/Pages/signup.css';
-import { connect } from 'react-redux';
-import {register} from '../redux/action/userAction';
 import Axios from "axios";
 import { Redirect } from 'react-router';
 import {Link} from 'react-router-dom';
 
-class Signup extends React.Component {
-  state= {
-      email: "",
-      phone_number: "",
-      password: "",
-      username: '',
-      success: "",
-      redirect: false,
-      failure: false
+const Signup = ()=>{
+  const [email, setEmail] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [success, setSuccess] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const [failure, setFailure] = useState(false);
+
+  const handleEmailChange =(e: ChangeEvent<HTMLInputElement>) =>{
+    setEmail(e.target.value);
   }
-  componentDidMount(){
-    // call the action when the page loads
-    this.props.register();
-}
 
+  const handlePhoneChange =(e: ChangeEvent<HTMLInputElement>) =>{
+    setPhone_number(e.target.value);
+  }
 
+  const handlePasswordChange =(e: ChangeEvent<HTMLInputElement>) =>{
+    setPassword(e.target.value);
+  }
+  const handleUsernameChange =(e: ChangeEvent<HTMLInputElement>) =>{
+    setUsername(e.target.value);
+  }
 
-  render() { 
-    const onChangeHandler = (field, e) =>{
-      this.setState({
-        ...this.state,
-        [field]: e.target.value
-      })
-    }
-    
-
-    const { user, submitted } = this.state;
-     
-
-    const onSubmitHandle = async (e) =>{
+  
+      const onSubmitHandle = async (e: FormEvent<HTMLFormElement>) =>{
       const data = {
-        email: this.state.email,
-        phone_number: this.state.phone_number,
-        password: this.state.password,
-        username: this.state.username
+        email,
+        phone_number,
+        password,
+        username
       };
 
       e.preventDefault();
       console.log("submitted");
       const res = await Axios.post("https://trakkkr.herokuapp.com/user/register/", data)
-      .catch((err)=>{
-        this.setState({failure: true});
-      })
-
-      if(res){
-        this.setState({success: res.data.status_message, redirect: true});
+      try {
+        if(res){
+          setSuccess(res.data.status_message);
+          setRedirect(true);
+        }
+      } catch (error) {
+        setFailure(true); 
       }
 
+      
+
     }
 
-    const {redirect} = this.state;
 
-    if(redirect){
+
+  if(redirect){
       return <Redirect to="/"/>
     }
-    
-    return <div className="register"> 
+
+  return (
+  <div className="register"> 
         <div className="register__box">
         <div className="row" style={{margin : 0}}>
           <div className="col-lg-5 col-md-5 col-xs-12">
@@ -76,8 +74,8 @@ class Signup extends React.Component {
           <div className="col-lg-7 col-md-7 col-xs-12">
             <div className="w-full ">
               <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit = {onSubmitHandle}>
-              <div className='font-sans italic text-xs text-green-500 pb-2'>{this.state.success}</div>
-              {this.state.failure?<div className='font-sans italic text-xs text-red-500 pb-2'>Operation Failed. Pls try again</div>: <div></div>}
+              <div className='font-sans italic text-xs text-green-500 pb-2'>{success}</div>
+              {failure?<div className='font-sans italic text-xs text-red-500 pb-2'>Operation Failed. Pls try again</div>: <div></div>}
                 <div className="mb-4">
                   <input 
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
@@ -85,15 +83,10 @@ class Signup extends React.Component {
                     type="text" 
                     name='email'
                     placeholder="Email"
-                    value={this.state.email}
-                    onChange= {(e) => onChangeHandler('email', e)}
+                    value={email}
+                    onChange= {handleEmailChange}
                   />
                 </div>
-                  <p className="text-red-500 text-xs italic">
-                    {submitted && !user.email &&
-                    <p className="text-red-500 text-xs italic">Please choose a password.</p>
-                  }
-                  </p>
                 <div className="mb-4">
                   <input 
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
@@ -101,8 +94,8 @@ class Signup extends React.Component {
                     type="text" 
                     name='username'
                     placeholder="Username"
-                    value= {this.state.username}
-                    onChange= {(e) => onChangeHandler('username', e)}
+                    value= {username}
+                    onChange= {handleUsernameChange}
                   />
                 </div>
                 <div className="mb-4">
@@ -112,8 +105,8 @@ class Signup extends React.Component {
                     type="text" 
                     name='phone'
                     placeholder="Phone Number"
-                    value= {this.state.phone_number}
-                    onChange= {(e) => onChangeHandler('phone_number', e)}
+                    value= {phone_number}
+                    onChange= {handlePhoneChange}
                   />
                 </div>
                 <div className="mb-6">
@@ -123,8 +116,8 @@ class Signup extends React.Component {
                     type="password" 
                     name='password'
                     placeholder="Must be 8 more than 8 char"
-                    value= {this.state.password}
-                    onChange= {(e) => onChangeHandler('password', e)}
+                    value= {password}
+                    onChange= {handlePasswordChange}
                   />
                 </div>
                 <div className="flex items-center justify-between">
@@ -147,13 +140,46 @@ class Signup extends React.Component {
           </div>
         </div> 
         </div>
-      </div>
-  }
+      </div>)
+
 }
 
-const mapStateToProps =(state)=>{
-  return {user: state.user}
-}
+// class Signup extends React.Component {
+//   state= {
+//       email: "",
+//       phone_number: "",
+//       password: "",
+//       username: '',
+//       success: "",
+//       redirect: false,
+//       failure: false
+//   }
+
+
+
+//   render() { 
+//     const onChangeHandler = (field, e) =>{
+//       this.setState({
+//         ...this.state,
+//         [field]: e.target.value
+//       })
+//     }
+    
+
+//     const { user, submitted } = this.state;
+     
+
+
+
+//     const {redirect} = this.state;
+
+//   
+    
+//     return 
+//   }
+// }
+
+
  
-export default connect(mapStateToProps, {register})(Signup);
+export default Signup;
 
