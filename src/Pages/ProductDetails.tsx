@@ -105,9 +105,10 @@ function ProductDetails(props: any) {
 
   return (
     <div className="container ">
-      {!products.length ? (
-        <div>
-          {products.map((product) => (
+      {console.log(products)}
+      {products.length &&
+        products.map((product) => (
+          <div>
             <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 pt-4">
               <div className="col-span-1 border rounded-4xl">
                 <div
@@ -121,7 +122,7 @@ function ProductDetails(props: any) {
                 ></div>
               </div>
               <div className="col-span-2 px-6 py-0">
-                <div className="text-3xl font-sans ">{product.item_title}</div>
+                <div className="text-3xl font-sans ">{product.item_title}🤞</div>
                 <div>
                   <p className="font-serif text-base mt-1 mb-0 text-xs text-gray-400 font-semibold">Price on Jumia</p>
                   <p className="font-serif text-lg mt-0">#{product.last_price}</p>
@@ -184,11 +185,8 @@ function ProductDetails(props: any) {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div>Nothing</div>
-      )}
+          </div>
+        ))}
     </div>
   );
 }
