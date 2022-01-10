@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 export default function Index() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-600" aria-label="Eighth navbar example">
-      <div class="container">
-        <a class="navbar-brand" href="/product">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-blue-600" aria-label="Eighth navbar example">
+      <div className="container">
+        <a className="navbar-brand" href="/product">
           Trakkkr⏰
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarsExample07"
@@ -29,7 +29,7 @@ export default function Index() {
           </svg>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample07">
+        <div className="collapse navbar-collapse" id="navbarsExample07">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 navbar__ui">
             <li className="nav-item">
               <Link className="nav-link text-semibold font-sans  active " to="/product">

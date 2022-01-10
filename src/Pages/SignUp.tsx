@@ -59,8 +59,10 @@ const Signup = () => {
         <div className="row" style={{ margin: 0 }}>
           <div className="col-lg-5 col-md-5 col-xs-12">
             <div className="signup_tag">
-              <h2>SignUp</h2>
-              <p>the most and common thing used to be very efficiient and go to work out to be tracked. </p>
+              <h2 className="font-sans text-5xl">SignUp</h2>
+              <p className="font-mono tracking-wide">
+                The most and common thing used to be very efficiient and go to work out to be tracked.{' '}
+              </p>
             </div>
           </div>
           <div className="col-lg-7 col-md-7 col-xs-12">
