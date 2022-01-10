@@ -165,7 +165,7 @@ const Product = () => {
         </Modal>
       </div>
       <div className="container mt-5 py-3">
-        <div className="text-sans font-md text-blue-500 text-base font-bold">24 Products</div>
+        <div className="text-sans font-md text-blue-500 text-base font-bold">{products.length} Products</div>
       </div>
       <div className="container mb-5">
         {products ? (
@@ -176,7 +176,6 @@ const Product = () => {
                   className="flex flex-col p-2 relative products  rounded-xl shadow-lg "
                   style={{ backgroundImage: `url("${prod.item_image_url}")` }}
                 >
-                  <div className="rounded full w-2 h-2 absolute right-4 top-4 bg-red-500"></div>
                   <div className="text-ms  absolute bottom-4 left-5 font-medium text-gray-700 pt-2">
                     {prod.item_title}
                   </div>

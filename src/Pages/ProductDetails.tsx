@@ -24,6 +24,7 @@ function ProductDetails() {
   let history = useHistory();
   const [redirect, setredirect] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const [price, setPrice] = useState(0);
   const [product, setProduct] = useState<ProductData | null>(null);
 
@@ -92,6 +93,13 @@ function ProductDetails() {
   const closeEditModal = () => {
     setModalIsOpen(false);
   };
+
+  const openDeleteModal = () => {
+    setModalDeleteOpen(true);
+  };
+  const closeDeleteModal = () => {
+    setModalDeleteOpen(false);
+  };
   const afterOpenModal = () => {
     // references are now sync'd and can be accessed.
     // subtitle.style.color = "#f00";
@@ -102,7 +110,7 @@ function ProductDetails() {
   }
 
   if (!product) return null;
-  const { last_price, id: item_title, requested_price } = product;
+  const { last_price, item_title, requested_price, item_image_url } = product;
   return (
     <div className="container ">
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 pt-4">
@@ -110,7 +118,7 @@ function ProductDetails() {
           <div
             className=" rounded-lg"
             style={{
-              backgroundImage: `url("${product.item_image_url}")`,
+              backgroundImage: `url("${item_image_url}")`,
               height: '400px',
               width: '100%',
               backgroundSize: 'cover',
@@ -130,10 +138,34 @@ function ProductDetails() {
           <div>
             <button
               className="captializze font-semibold mr-3 font-sans text-base bg-blue-500 text-white py-2 px-5 border rounded-md"
-              onClick={onDeleteButton}
+              onClick={openDeleteModal}
             >
               Delete
             </button>
+
+            <Modal
+              isOpen={modalDeleteOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeDeleteModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <h2 className="text-sans text-black text-2xl">Are you sure you want to delete {item_title}?</h2>
+              <button
+                className="  py-2 px-5 border rounded-md font-semibold mr-3 font-sans text-base"
+                onClick={() => {
+                  history.goBack();
+                }}
+              >
+                No
+              </button>
+              <button
+                className="bg-red-500 text-white py-2 px-5 border rounded-md font-semibold mr-3 font-sans text-base"
+                onClick={onDeleteButton}
+              >
+                Yes
+              </button>
+            </Modal>
             <button
               className="captializze font-semibold mr-3 font-sans text-base bg-blue-500 text-white py-2 px-5 border rounded-md"
               onClick={openEditModal}
