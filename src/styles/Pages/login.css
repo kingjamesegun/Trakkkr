@@ -1,5 +1,10 @@
 .login {
   padding: 5% 5% 0% 5%;
+  background: url("../../assets/bglogin.png");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }
 
 .login .login__box {
@@ -11,6 +16,10 @@
     -webkit-box-shadow: none;
     box-shadow: none;
     padding-top: 20%;
+  }
+  .login{
+    background: none
+
   }
 }
 

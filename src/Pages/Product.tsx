@@ -1,40 +1,38 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent} from "react";
-import "../styles/Pages/Product.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import Modal from "react-modal";
-import NoData from "../assets/nodata.svg";
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import '../styles/Pages/Product.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Modal from 'react-modal';
+import NoData from '../assets/nodata.svg';
 
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   },
 };
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
-interface ProductData{
-  title: string,
-  id: number | string,
-  item_image_url: string,
-  item_title: string
-
+interface ProductData {
+  title: string;
+  id: number | string;
+  item_image_url: string;
+  item_title: string;
 }
-const Product=() =>{
+const Product = () => {
   useEffect(() => {
     async function fetchdata() {
-    
-    const response = await axios.get("https://trakkkr.herokuapp.com/", {
-      headers: {
-        Authorization: `Token ${localStorage.getItem("token")}`,
-      },
-    });
-    setProducts(response.data);
+      const response = await axios.get('https://trakkkr.herokuapp.com/', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
+      });
+      setProducts(response.data);
     }
 
     fetchdata();
@@ -51,17 +49,16 @@ const Product=() =>{
     // subtitle.style.color = "#f00";
   }
 
-  const closeModal=async()=> {
-    
+  const closeModal = async () => {
     const data = {
       url,
       requested_price: price,
     };
 
     const response = await axios
-      .post("https://trakkkr.herokuapp.com/", data, {
+      .post('https://trakkkr.herokuapp.com/', data, {
         headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
+          Authorization: `Token ${localStorage.getItem('token')}`,
         },
       })
       .catch((err) => {
@@ -71,9 +68,9 @@ const Product=() =>{
       setIsOpen(false);
     }
     setIsOpen(false);
-  }
+  };
   // Track
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
   const [price, setPrice] = useState(0);
 
   const onUrlChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -91,9 +88,9 @@ const Product=() =>{
     };
 
     const response = await axios
-      .post("https://trakkkr.herokuapp.com/", data, {
+      .post('https://trakkkr.herokuapp.com/', data, {
         headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
+          Authorization: `Token ${localStorage.getItem('token')}`,
         },
       })
       .catch((err) => {
@@ -108,16 +105,16 @@ const Product=() =>{
     <div>
       <div className=" text-center px-0 md:px-20 py-2">
         <h1 className="text-4xl md:text-7xl px-0 md:px-20 pt-5 pb-2">
-          No stress,
+          No stress👌,
           <br />
-          No daily Tracking
+          No daily Tracking,
           <br />
           We Track & you get notified.
         </h1>
         <p className="text-base md:text-2xl tracking-wider font-normal pt-2 ">
-          Millions of developers use Netlify to ship faster,
+          Millions of people uses Trakker⏰ for longtime tracking,
           <br />
-          simplify their workflows, and scale effortlessly.
+          simplify their tracks, and scale effortlessly.
         </p>
         <button
           className="text-center text-white bg-blue-500 py-2 px-4 rounded-md hover:bg-blue-6  00 "
@@ -133,10 +130,7 @@ const Product=() =>{
           contentLabel="Example Modal"
         >
           <h2 className="text-sans text-black text-2xl">Track</h2>
-          <form
-            className="bg-white  w-80 px-8 pt-6 pb-8 mb-5"
-            onSubmit={onSubmitHandler}
-          >
+          <form className="bg-white  w-80 px-8 pt-6 pb-8 mb-5" onSubmit={onSubmitHandler}>
             <div className="mb-4">
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -171,20 +165,13 @@ const Product=() =>{
         </Modal>
       </div>
       <div className="container mt-5 py-3">
-        <div className="text-sans font-md text-blue-500 text-base font-bold">
-          24 Products
-        </div>
+        <div className="text-sans font-md text-blue-500 text-base font-bold">24 Products</div>
       </div>
       <div className="container mb-5">
         {products ? (
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
-          {console.log(products)}
             {products.map((prod) => (
-              <Link
-                to={`/products/${prod.id}`}
-                className="text-black non-style"
-                  key={prod.id}
-              >
+              <Link to={`/products/${prod.id}`} className="text-black non-style" key={prod.id}>
                 <div
                   className="flex flex-col p-2 relative products  rounded-xl shadow-lg "
                   style={{ backgroundImage: `url("${prod.item_image_url}")` }}
@@ -208,6 +195,6 @@ const Product=() =>{
       </div>
     </div>
   );
-}
+};
 
 export default Product;
